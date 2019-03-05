@@ -1,6 +1,7 @@
 package au.gov.api
 
-import au.gov.api.serviceDescription.ServiceDescriptionService
+import au.gov.api.asset.AssetService
+import au.gov.api.asset.Space
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -15,7 +16,7 @@ class Controller {
     private val log = LoggerFactory.getLogger(this.javaClass)
 
     @Autowired
-    lateinit var serviceDescriptionService: ServiceDescriptionService
+    lateinit var assetService: AssetService
 
 
     @RequestMapping("/")
@@ -25,6 +26,10 @@ class Controller {
 
     @RequestMapping("/space/{space}")
     fun space(@PathVariable space:String, model:MutableMap<String, Any?>): String{
+
+        val theSpace = assetService.getSpace(space)
+        model["popularArticles"] = assetService.getArticlesForSpace(theSpace)
+
         return "space"
     }
 }
