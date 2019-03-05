@@ -15,9 +15,35 @@ class AssetRepository() {
 
     @EventListener(ApplicationReadyEvent::class)
     fun insertContentOnStartup(){
-        load(Space(Metadata(id = "ato", tags = listOf("ato"))))
+        load(Space(Metadata(id = "ato", tags = listOf("ato")),
+                name = "Australian Taxation Office",
+                overview = "The ATO is the government's principal revenue collection agency with a large number of API-enabled services available and is bringing more online regularly. They are also responsible for managing the superannuation system and business registrations."
+        ))
                  
-        load(Article(metadata = Metadata(id = "Article1", tags = listOf("ato")), title = "The Operating Framework is coming", date = "01/01/1970", summary = "Come and learn about the framework"))
+        load(Article(metadata = Metadata(id = "Article1", tags = listOf("ato", "dhs")),
+            title = "The Operating Framework is coming", 
+            date = "01/01/1970",
+            summary = "Here are the things you need to be doing now to remain compliant")
+        )
+        load(Article(metadata = Metadata(id = "Article2", tags = listOf("ato")),
+            title = "Single Touch Payroll information sessions", 
+            date = "02/01/1970",
+            summary = "Learn about what employers will need to do, and what your software can do to help them")
+        )
+
+
+
+        load(Space(Metadata(id = "dhs", tags = listOf("dhs")),
+                name = "Department Of Human Services",
+                overview = "DHS delivers welfare services to the Australian public, with many API-enabled services that help doctors and other health providers lodge claims on behalf of their patients."
+        ))
+                 
+        load(Article(metadata = Metadata(id = "Article3", tags = listOf("dhs")),
+            title = "WPIT, and what it means for software providers", 
+            date = "03/01/1970",
+            summary = "WPIT is nearly live, and it's now time to start thinking about how your businesses can take part")
+        )
+
     }
 
     fun getArticlesForTags(tags:List<String>): List<Article> {

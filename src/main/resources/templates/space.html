@@ -28,7 +28,7 @@
                     <nav class="au-breadcrumbs" aria-label="breadcrumb">
                       <ul class="au-link-list au-link-list--inline">
                         <li><a href="/developer/">Home</a></li>
-                        <li>Australian Taxation Office</li>
+                        <li th:text="${space.name}"/>
                       </ul>
                     </nav>
 
@@ -36,7 +36,7 @@
                     <div class="row dashboardHeader">
 
                         <div class="col-sm-7">
-                            <h2 class="dashboardHeader__title">Australian Taxation Office</h2>
+                            <h2 th:text="${space.name}" class="dashboardHeader__title"/>
                             <div class="dashboardHeader__widgets">
                                 <div class="dashboardWidget">
                                     <img class="dashboardWidget__icon" src="/developer/img/calendar.svg"/>
@@ -48,7 +48,7 @@
                                 </div>  
                             </div>  
                             <div class="dashboardHeader__body">
-                                <p><span class="dashboardHeader__overview">Overview:</span>The ATO is the government's principal revenue collection agency with a large number of API-enabled services available and is bringing more online regularly. They are also responsible for managing the superannuation system and business registrations.</p>
+                                <p><span class="dashboardHeader__overview">Overview:</span><span th:text="${space.overview}"/></p>
                             </div>  
                         </div>
 
@@ -57,19 +57,13 @@
                         <div class="col-sm-4">
                             <div class="popularItems">
                                 <div class="popularItems__head">
-                                    <!--div class="popularItems__headTitle">Popular Articles</div-->
-                                    <div th:text="${popularArticles}" class="popularItems__headTitle"/>
-                                    <div class="popularItems__headMore">More</div>
+                                    <div class="popularItems__headTitle">Popular Articles</div>
+                                    <a th:attr="href=${'/developer/articles?' + articlesTagString}"><div class="popularItems__headMore working">All</div></a>
                                 </div>
-                                <div class="popularItem">
-                                    <div class="popularItem__title">The Operational Framework is here</div>
-                                    <div class="popularItem__date">31/12/18</div>
-                                    <div class="popularItem__summary">Here are the things you need to be doing now to remain compliant</div>
-                                </div>
-                                <div class="popularItem">
-                                    <div class="popularItem__title">Singe Touch Payroll information sessions</div>
-                                    <div class="popularItem__date">15/1/19</div>
-                                    <div class="popularItem__summary">Learn about what employers will need to do, and what you can do to help them</div>
+                                <div th:each="article: ${popularArticles}" class="popularItem">
+                                    <a th:attr="href=${'/developer/article/' + article.metadata.id}"><div th:text="${article.title}" class="popularItem__title working"/></a>
+                                    <div th:text="${article.date}" class="popularItem__date"/>
+                                    <div th:text="${article.summary}" class="popularItem__summary"/>
                                 </div>
                             </div>
                         </div>

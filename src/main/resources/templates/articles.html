@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]>
+	<html class="no-js lt-ie8 lt-ie9" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+	<html class="no-js lt-ie9 ie8" lang="en">
+<![endif]-->
+<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="en">
+<![endif]-->
+<!--[if !(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en">
+<!--<![endif]-->
+    <div th:replace="fragments/layout :: head" />
+    <body class="au-grid">
+        <div th:replace="fragments/layout :: header" />
+        <main id="content">
+        <div class="au-body">
+
+
+
+
+
+
+            <section class="highlighted-section au-body">
+                <div class="container-fluid">
+
+                    <nav class="au-breadcrumbs" aria-label="breadcrumb">
+                      <ul class="au-link-list au-link-list--inline">
+                        <li><a href="/developer/">Home</a></li>
+                        <li>Articles</li>
+                      </ul>
+                    </nav>
+
+
+                    <div class="col-lg-8">
+                        <div class="popularItems">
+                            <div th:each="article: ${articles}" class="popularItem">
+                                <a th:attr="href=${'/developer/article/' + article.metadata.id}"><div th:text="${article.title}" class="popularItem__title working"/></a>
+                                <div th:text="${article.date}" class="popularItem__date"/>
+                                <div th:text="${article.summary}" class="popularItem__summary"/>
+                            </div>
+                        </div>
+                    </div>
+            
+
+                </div>
+            </section>
+
+
+
+        </div>
+        </main>
+        <div th:replace="fragments/layout :: footer"/>
+    </body>
+</html>
