@@ -1,0 +1,11 @@
+---
+applications:
+  - name: api-gov-au-proto
+    memory: 1G
+    buildpack: java_buildpack
+    env:
+      SPRING_PROFILES_ACTIVE: prod
+      JAVA_OPTS: -Duser.timezone=Australia/Canberra
+    path: build/libs/developer-hub-1.0.jar
+    routes:
+      - route: api.gov.au/developer

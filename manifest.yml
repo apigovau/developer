@@ -1,9 +1,0 @@
----
-applications:
-- name: api-gov-au-proto
-  memory: 64M
-  disk_quota: 256M
-  buildpack: staticfile_buildpack
-  path: _site
-  routes:
-  - route: api.gov.au/developer
