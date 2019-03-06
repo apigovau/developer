@@ -19,9 +19,11 @@ class AssetService {
     lateinit var repo: AssetRepository
 
     fun getArticlesForTags(tags:List<String>): List<Article> = repo.getArticlesForTags(tags)
-    fun getArticlesForSpace(space:Space): List<Article> = repo.getArticlesForTags(space.metadata.tags)
+    fun getArticlesForSpace(space:Space): List<Article> = repo.getArticlesForTags( repo.getTreeTags(space.tag) )
     fun getSpace(id:String):Space = repo.getSpace(id)
     fun getArticle(id:String):Article = repo.getArticle(id)
+    fun parentsOfSpace(space:String):List<String> = repo.parentsOfSpace(space) 
+    fun spaceHasParents(space:String):Boolean = parentsOfSpace(space).isNotEmpty()
 
 }
 

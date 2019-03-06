@@ -28,8 +28,19 @@ class Controller {
     @RequestMapping("/space/{space}")
     fun space(@PathVariable space:String, model:MutableMap<String, Any?>): String{
         val theSpace = assetService.getSpace(space)
+        
+
+        val parentSpaces = assetService.parentsOfSpace(space)
+        
+        val agencyLogoText = when(parentSpaces.size){
+            0 -> theSpace.name
+            else -> parentSpaces.map { assetService.getSpace(it).name.replace(" ","+") }.joinToString("&agency=")
+        }
+        model["agencyLogo"] = "https://api-gov-au-crest-branding.apps.y.cld.gov.au/inline.png?agency=${agencyLogoText}&height=200"
+
+
         model["space"] = theSpace
-        model["articlesTagString"] = toQueryParam("tag", theSpace.metadata.tags) 
+        model["articlesTagString"] = theSpace.tag 
         model["popularArticles"] = assetService.getArticlesForSpace(theSpace).take(2)
         return "space"
     }

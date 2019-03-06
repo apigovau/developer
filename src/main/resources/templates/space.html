@@ -36,6 +36,7 @@
                     <div class="row dashboardHeader">
 
                         <div class="col-sm-7">
+                            <img th:attr="src=${agencyLogo}" class="dashboardHeader__title" />
                             <h2 th:text="${space.name}" class="dashboardHeader__title"/>
                             <div class="dashboardHeader__widgets">
                                 <div class="dashboardWidget">
@@ -58,7 +59,7 @@
                             <div class="popularItems">
                                 <div class="popularItems__head">
                                     <div class="popularItems__headTitle">Popular Articles</div>
-                                    <a th:attr="href=${'/developer/articles?' + articlesTagString}"><div class="popularItems__headMore working">All</div></a>
+                                    <a th:attr="href=${'/developer/articles?tag=' + articlesTagString}"><div class="popularItems__headMore working">All</div></a>
                                 </div>
                                 <div th:each="article: ${popularArticles}" class="popularItem">
                                     <a th:attr="href=${'/developer/article/' + article.metadata.id}"><div th:text="${article.title}" class="popularItem__title working"/></a>
