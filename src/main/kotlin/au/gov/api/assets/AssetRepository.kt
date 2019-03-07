@@ -16,7 +16,7 @@ class AssetRepository() {
     @EventListener(ApplicationReadyEvent::class)
     fun insertContentOnStartup(){
         load(Space(tag = "ato",
-                childSpaces = listOf("stp"),
+                childSpaces = listOf("stp","tr"),
                 name = "Australian Taxation Office",
                 overview = "The ATO is the government's principal revenue collection agency with a large number of API-enabled services available and is bringing more online regularly. They are also responsible for managing the superannuation system and business registrations."
         ))
@@ -25,6 +25,11 @@ class AssetRepository() {
             title = "The Operating Framework is coming", 
             date = "01/01/1970",
             summary = "Here are the things you need to be doing now to remain compliant")
+        )
+        load(Article(metadata = Metadata(id = "Article3", tags = listOf("tr")),
+            title = "FBT Dates are changing", 
+            date = "02/01/1970",
+            summary = "Has your software taken into account the new FBT dates this year")
         )
         load(Article(metadata = Metadata(id = "Article2", tags = listOf("stp")),
             title = "Single Touch Payroll information sessions", 
@@ -45,6 +50,9 @@ class AssetRepository() {
             summary = "WPIT is nearly live, and it's now time to start thinking about how your businesses can take part")
         )
 
+        load(Space("tr",
+                name = "Tax Returns",
+                overview = "Lodge the individual and company returns here"))
         load(Space("stp",
                 name = "Single Touch Payroll",
                 overview = "Single Touch Payroll (STP) changes the way employers report their employees' tax and super information to us."))

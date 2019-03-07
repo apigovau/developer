@@ -59,7 +59,7 @@
                             <div class="popularItems">
                                 <div class="popularItems__head">
                                     <div class="popularItems__headTitle">Popular Articles</div>
-                                    <a th:attr="href=${'/developer/articles?tag=' + articlesTagString}"><div class="popularItems__headMore working">All</div></a>
+                                    <a th:attr="href=${'/developer/articles?tag=' + articlesTagString}"><div class="popularItems__headMore working" th:text="${'All (' + articles.size()  + ')'}"/></a>
                                 </div>
                                 <div th:each="article: ${popularArticles}" class="popularItem">
                                     <a th:attr="href=${'/developer/article/' + article.metadata.id}"><div th:text="${article.title}" class="popularItem__title working"/></a>

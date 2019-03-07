@@ -41,7 +41,9 @@ class Controller {
 
         model["space"] = theSpace
         model["articlesTagString"] = theSpace.tag 
-        model["popularArticles"] = assetService.getArticlesForSpace(theSpace).take(2)
+        val articles = assetService.getArticlesForTags(listOf(theSpace.tag))
+        model["popularArticles"] = articles.take(2)
+        model["articles"] = articles
         return "space"
     }
 
